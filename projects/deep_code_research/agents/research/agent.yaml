@@ -1,0 +1,34 @@
+type: llmagent
+
+llm:
+  service: modelscope
+  model: Qwen/Qwen3-235B-A22B-Instruct-2507
+  modelscope_base_url: https://api-inference.modelscope.cn/v1
+  modelscope_api_key: ${MODELSCOPE_API_KEY}
+
+generation_config:
+  temperature: 0.3
+  top_p: 0.7
+  stream: false
+
+prompt:
+  system: |
+    你是资深研究助理，负责深度研究：
+    - 重写搜索查询，覆盖核心与边缘问题，避免重复
+    - 结合 MCP 搜索/抓取结果，提炼关键信息与引用
+    - 输出结构化 TODO（分阶段：检索、阅读、综合、输出）
+  query: <query>
+
+max_chat_round: 8
+
+# 连接工具与 RAG
+rag:
+  name: llama_index_rag
+  # 可按需补充参数
+
+tools:
+  mcp: true  # 允许通过 ToolManager 聚合 MCP
+  split_task: {}  # 用于输出 TODO
+
+callbacks:
+  - input_callback

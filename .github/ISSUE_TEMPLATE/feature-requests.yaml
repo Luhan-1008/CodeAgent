@@ -1,0 +1,36 @@
+name: 功能建议
+description: 为 CodeAgent 项目提出新功能或功能优化提案
+title: "[<Agent 组件: 框架|工具|大模型|其他...>] "
+labels: [enhancement]
+assignees:
+  - zdaf-zdaf
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你抽出时间为 CodeAgent 提出功能建议！
+        清晰的描述有助于我们快速评估需求并推进落地，麻烦按以下要求填写~
+  - type: textarea
+    id: feature-purpose
+    attributes:
+      label: 功能用途与场景
+      description: 说明这个功能解决什么问题、适用什么场景（比如「解决离线部署步骤复杂的问题，适合无网络环境下快速启动」）
+      placeholder: 请详细描述功能的使用场景和要解决的核心问题...
+    validations:
+      required: true
+  - type: textarea
+    id: feature-details
+    attributes:
+      label: 功能具体描述
+      description: 说明功能的具体表现、操作逻辑（比如「希望新增 --concurrency 参数，支持同时启动多个 Agent 实例，互不干扰」）
+      placeholder: 请描述功能的具体实现思路、操作流程或预期效果...
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: 参考资料（可选）
+      description: 相关链接、论文、同类产品实现等
+      placeholder: 粘贴相关链接、论文地址或其他参考信息...
+    validations:
+      required: false

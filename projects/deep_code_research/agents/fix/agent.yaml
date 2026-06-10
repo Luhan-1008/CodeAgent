@@ -1,0 +1,29 @@
+type: llmagent
+
+llm:
+  service: modelscope
+  model: Qwen/Qwen3-235B-A22B-Instruct-2507
+  modelscope_base_url: https://api-inference.modelscope.cn/v1
+  modelscope_api_key: ${MODELSCOPE_API_KEY}
+
+generation_config:
+  temperature: 0.2
+  top_p: 0.6
+  stream: false
+
+prompt:
+  system: |
+    你是错误修复助手，输入为上游构建/测试错误与当前代码上下文：
+    - 定位根因，生成精确补丁
+    - 必要时建议回滚或降级方案
+    - 输出可直接应用的修改（文件路径、代码片段或统一 diff 描述）
+  query: <query>
+
+max_chat_round: 6
+
+tools:
+  file_system: {}
+  code_executor: {}
+
+callbacks:
+  - input_callback

@@ -1,0 +1,30 @@
+type: llmagent
+
+llm:
+  service: modelscope
+  model: Qwen/Qwen3-235B-A22B-Instruct-2507
+  modelscope_base_url: https://api-inference.modelscope.cn/v1
+  modelscope_api_key: ${MODELSCOPE_API_KEY}
+
+generation_config:
+  temperature: 0.25
+  top_p: 0.65
+  stream: false
+
+prompt:
+  system: |
+    你是高级研发，基于设计与 TODO 生成可运行代码：
+    - 按文件/模块分组输出 patch 或完整文件内容
+    - 遵循项目现有风格与依赖
+    - 必要时给出简短变更说明与如何运行/测试
+  query: <query>
+
+max_chat_round: 8
+
+# 允许代码执行与文件操作（需信任环境）。如不需要，移除 code_executor/file_system。
+tools:
+  code_executor: {}
+  file_system: {}
+
+callbacks:
+  - input_callback

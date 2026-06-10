@@ -1,0 +1,30 @@
+type: llmagent
+
+llm:
+  service: modelscope
+  model: Qwen/Qwen3-235B-A22B-Instruct-2507
+  modelscope_base_url: https://api-inference.modelscope.cn/v1
+  modelscope_api_key: ${MODELSCOPE_API_KEY}
+
+generation_config:
+  temperature: 0.0
+  top_p: 0.1
+  stream: false
+
+prompt:
+  system: |
+    你是持续集成助手，负责触发构建/测试并报告结果。
+    - 调用工具执行 build/test
+    - 汇总错误日志，提炼关键信息供后续修复
+  query: <query>
+
+max_chat_round: 4
+
+# 这里假设通过 MCP 提供 build/test 工具，或使用 code_executor 运行脚本
+# 如果有本地命令行工具，可在 MCP server 侧封装。
+tools:
+  mcp: true
+  code_executor: {}
+
+callbacks:
+  - input_callback

@@ -1,0 +1,23 @@
+name: 文档反馈   # 文档相关反馈
+title: "[<Agent 组件: 框架|工具|大模型|其他...>] "
+description: 反馈 CodeAgent 文档的错误、缺失或优化建议
+labels: [docs, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你帮助我们优化 MS-Agent 的文档和示例！
+        请详细描述文档问题，方便我们快速定位并修复。
+
+  - type: textarea
+    id: doc-issue
+    attributes:
+      label: 文档问题描述
+      description: |
+        请说明你遇到的文档问题或希望的优化方向，并提供相关文档的链接（或文档路径）。
+      placeholder: |
+        1. 文档问题：（比如「安装文档中 Step 2 的命令写错，应为 pip install xxx 而非 pip install yyy」）
+        2. 相关文档链接/路径：（比如「https://github.com/LittleYoungFish/CodeAgent/wiki/安装指南」或「docs/quick_start.md 第 10 行」）
+        3. 建议修改方案（可选）：（比如「建议补充 Windows 系统的部署步骤」）
+    validations:
+      required: true

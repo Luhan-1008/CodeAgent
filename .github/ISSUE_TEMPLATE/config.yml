@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 提问或获取使用支持
+    url: https://github.com/LittleYoungFish/CodeAgent/discussions/new?category=q-a
+    about: 关于 CodeAgent 的使用问题、配置咨询等，请到讨论区提问

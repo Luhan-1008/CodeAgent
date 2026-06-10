@@ -1,0 +1,31 @@
+{
+  "mcpServers": {
+    "fetch": {
+      "type": "streamable_http",
+      "url": "https://mcp.api-inference.modelscope.net/<your_mcp_uuid>/mcp",
+      "timeout": 120,
+      "sse_read_timeout": 300,
+      "env": {
+        "MODELSCOPE_API_KEY": "${MODELSCOPE_API_KEY}"
+      }
+    },
+    "search": {
+      "type": "streamable_http",
+      "url": "https://mcp.api-inference.modelscope.net/<your_mcp_uuid>/mcp",
+      "timeout": 120,
+      "sse_read_timeout": 300,
+      "env": {
+        "MODELSCOPE_API_KEY": "${MODELSCOPE_API_KEY}"
+      }
+    },
+    "code_runner": {
+      "type": "streamable_http",
+      "url": "https://mcp.api-inference.modelscope.net/<your_mcp_uuid>/mcp",
+      "timeout": 180,
+      "sse_read_timeout": 300,
+      "env": {
+        "MODELSCOPE_API_KEY": "${MODELSCOPE_API_KEY}"
+      }
+    }
+  }
+}

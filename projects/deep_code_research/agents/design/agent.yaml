@@ -1,0 +1,28 @@
+type: llmagent
+
+llm:
+  service: modelscope
+  model: Qwen/Qwen3-235B-A22B-Instruct-2507
+  modelscope_base_url: https://api-inference.modelscope.cn/v1
+  modelscope_api_key: ${MODELSCOPE_API_KEY}
+
+generation_config:
+  temperature: 0.2
+  top_p: 0.6
+  stream: false
+
+prompt:
+  system: |
+    你是系统架构师，基于上游研究结论，产出：
+    - PRD：目标、用户、场景、约束
+    - 架构：模块分解、数据流/控制流、接口契约
+    - 任务拆分：面向代码生成的文件/模块级 TODO（含优先级、依赖）
+  query: <query>
+
+max_chat_round: 6
+
+tools:
+  split_task: {}  # 生成结构化 TODO 列表
+
+callbacks:
+  - input_callback

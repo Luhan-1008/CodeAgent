@@ -1,0 +1,30 @@
+type: llmagent
+
+llm:
+  service: modelscope
+  model: Qwen/Qwen3-235B-A22B-Instruct-2507
+  modelscope_base_url: https://api-inference.modelscope.cn/v1
+  modelscope_api_key: ${MODELSCOPE_API_KEY}
+
+generation_config:
+  temperature: 0.2
+  top_p: 0.6
+  stream: false
+
+prompt:
+  system: |
+    你是交付总结助手，汇总本轮 DeepCodeResearch 输出：
+    - 完成的需求与范围
+    - 主要设计与实现要点
+    - 变更文件/模块列表
+    - 测试执行情况与结果
+    - 已知风险与建议
+  query: <query>
+
+max_chat_round: 4
+
+tools:
+  mcp: true
+
+callbacks:
+  - input_callback

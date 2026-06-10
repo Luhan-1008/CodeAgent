@@ -1,0 +1,36 @@
+# DeepCodeResearch DAG 工作流示例（可按需调整）
+# 运行示例：
+# PYTHONPATH=. python code_agent/cli/cli.py run \
+#   --config projects/deep_code_research \
+#   --query "请基于附件完成XXX系统的设计与代码生成" \
+#   --mcp_server_file projects/deep_code_research/mcp_servers.example.json \
+#   --trust_remote_code true
+# 需要提前在环境变量中设置 MODELSCOPE_API_KEY（或其它 LLM Key）。
+
+# 工作流类型
+ type: DagWorkflow
+
+# 节点定义（有向无环图）。每个节点指向一个 agent 配置目录。
+# research 为根节点；链式: research -> design -> codegen -> build_test -> fix -> report
+research:
+  agent_config: agents/research
+  next: [design]
+
+design:
+  agent_config: agents/design
+  next: [codegen]
+
+codegen:
+  agent_config: agents/codegen
+  next: [build_test]
+
+build_test:
+  agent_config: agents/build_test
+  next: [fix]
+
+fix:
+  agent_config: agents/fix
+  next: [report]
+
+report:
+  agent_config: agents/report
